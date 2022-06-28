@@ -1,3 +1,4 @@
+echo "AAAAAAAAAAAAAAAAAAAA"
 mkdir -p ~/.streamlit/
 
 echo "\
