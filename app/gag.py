@@ -1,6 +1,6 @@
 import time
 import cv2 as cv
-import hydra
+
 
 class GAGModel():
     """
@@ -8,8 +8,19 @@ class GAGModel():
     """
 
     def __init__(self):
-        hydra.initialize(config_path="conf", job_name="test_app")
-        cfg = hydra.compose(config_name="config")
+        class cfg:
+            class model:
+                dir = 'models/'
+                faceProto = 'opencv_face_detector.pbtxt'
+                faceModel = 'opencv_face_detector_uint8.pb'
+                ageProto = 'age_deploy.prototxt'
+                ageModel = 'age_net.caffemodel'
+                genderProto = 'gender_deploy.prototxt'
+                genderModel = 'gender_net.caffemodel'
+            class predict:
+                mean = [78.4263377603, 87.7689143744, 114.895847746]
+                ages = ['(0-2)', '(4-6)', '(8-12)', '(15-20)', '(25-32)', '(38-43)', '(48-53)', '(60-100)']
+                genders = ['Male', 'Female']
 
         faceProto = cfg.model.dir + cfg.model.faceProto
         faceModel = cfg.model.dir + cfg.model.faceModel
@@ -73,3 +84,5 @@ class GAGModel():
                 label = "{},{}".format(gender, age)
                 cv.putText(frameFace, label, (bbox[0], bbox[1]-10), cv.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2, cv.LINE_AA)
         return data if returnJson else frameFace
+
+g = GAGModel()

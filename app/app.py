@@ -23,7 +23,7 @@ def main():
         st.write("")
         st.write("Detecting faces...")
 
-        outputJson = gag.get_age_gender(image, jsonResult=True)
+        outputJson = gag.get_age_gender(image, returnJson=True)
         if len(outputJson) > 0:
             print(outputJson)
             outputImg = gag.get_age_gender(image)
