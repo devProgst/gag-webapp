@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 import streamlit as st
-from gag_python.gag import GAGModel
+from gag import GAGModel
 
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
